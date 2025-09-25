@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:'Poppins',sans-serif;background:#0f0f12;color:#fff;text-align:center}
+    /* Changed background to a soft romantic love image (roses / soft pink vibe) */
+    .bg{position:fixed;inset:0;
+        background:url('https://images.unsplash.com/photo-1529336953124-4b36d3f1f5b4?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        filter:blur(3px) brightness(0.45);}
+    .overlay{position:fixed;inset:0;background:linear-gradient(120deg, rgba(10,4,10,0.55), rgba(5,2,6,0.65));}
+    .content{position:relative;z-index:2;max-width:900px;margin:40px auto;padding:40px}
+    h1{color:#ff9ab3;font-size:30px;margin:0 0 12px}
+    .message{white-space:pre-wrap;line-height:1.7;margin-top:20px;text-align:left;font-size:16px;background:rgba(255,255,255,0.04);padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    .hidden{display:none !important}
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:999;background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65))}
+    .modal .box{background:linear-gradient(180deg,#fff,#ffeef6);color:#23021a;padding:26px;border-radius:14px;max-width:460px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+    .modal h2{margin:0 0 6px;font-size:22px}
+    .modal p{margin:0 0 14px;color:#444}
+    .modal input{width:100%;padding:12px;margin-top:6px;border:1px solid rgba(0,0,0,0.08);border-radius:10px;font-size:15px}
+    .modal button{margin-top:14px;padding:10px 18px;border-radius:10px;border:0;background:#ff4d7e;color:#fff;font-weight:700;cursor:pointer}
+    #err{color:#a7003a;margin-top:10px;display:none}
+    .hearts{position:fixed;right:18px;bottom:18px;z-index:3;pointer-events:none}
+    .heart{width:36px;height:36px;border-radius:10px;background:linear-gradient(180deg,#ff9ab3,#ff5c86);display:inline-block;margin:6px;transform:rotate(-30deg);opacity:0.95}
+    footer{margin-top:28px;opacity:0.85;font-size:14px}
+    @media(max-width:640px){ .content{padding:20px} .modal .box{padding:18px} .message{font-size:15px} }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
+  <!-- Security Gate -->
+  <div class="modal" id="gate">
+    <div class="box">
+      <h2 id="qTitle">Security Question</h2>
+      <p id="qDesc">Mai tumhe pyaar se kya kehta hu? ❤️</p>
+      <input id="answer" placeholder="Type answer..." autocomplete="off" />
+      <button id="unlockBtn">Open</button>
+      <p id="err">Galat jawab hai, dobara koshish karo! 😘</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content hidden" id="mainContent" aria-hidden="true">
+    <header style="display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:8px">
+      <div style="width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,#ffe6ef,#ffd0e8);display:flex;align-items:center;justify-content:center;color:#6a0033;font-weight:800;font-size:30px">❤</div>
+      <div style="text-align:left;max-width:720px">
+        <h1 style="margin:0">Happy Birthday, my love 🎂</h1>
+        <p style="margin:6px 0 0;opacity:0.9">A little private corner made by me — open only for you.</p>
+      </div>
+    </header>
+
+    <section class="message" id="loveMessage"></section>
+
+    <footer>Made with ❤️ — just for you.</footer>
+  </div>
+
+  <div class="hearts" aria-hidden>
+    <div class="heart"></div>
+    <div class="heart" style="transform:rotate(-20deg) scale(0.9)"></div>
+    <div class="heart" style="transform:rotate(-40deg) scale(0.8)"></div>
+  </div>
+
+  <script>
+    // correct answer
+    const SECURITY_ANSWER = "janah";
+
+    // full message (your paragraph as provided)
+    const loveMessage = `Happy 19th Birthday Hadiya 🥳🎂❤️
+
+Janah Aaj tumhari zindagi ka naya saal shuru ho raha hai,🎀♥️🎉 aur main dil se dua karta hoon ke yeh saal tumhare liye pehle se zyada khoobsurat ho.🎀🌹♥️ Meri Jaaan Allah tumhari har dua qubool kare,🎉🌹 tumhari har khwahish ko tumhare naseeb ka hissa banaye, ♥️ 🎉. aur tumhe wo sukoon de jo sirf usi ki rehmat se milta hai.♾️🫂💋 Tumhari har subah khushgawar ho aur tumhari har raat chain aur sukoon se bhari ho. 🤲✨♾️💋
+
+Hadiya, 🎉🫂 tum meri zindagi mein aisi roshni ban kar aayi ho jisme kabhi andhera aaa hi nahi sakta ,♾️🫂💋 meri rooh ho,🌹🫂 aur meri duaon ka wo hissa ho jo main kabhi Allah se maangna nahi bhoolta.🎉🌹 Tum meri muskaan ki wajah ho, meri khamoshi ka jawab ho,♾️🫂♥️ aur meri duniya ka sabse khoobsurat ehsaas ho. 💕🎉💋
+
+Main chahta hoon ke tumhe yeh hamesha yaad rahe ke tum meri zindagi ka sabse bada tohfa ho♾️🫂🎉. Duniya chahe jitni bhi badal jaye,♥️♾️💋 Lakin meri janah mera pyaar tumhare liye kabhi kam nahi hoga🌹🎉♥️. Tumhari khushi meri duaon ka pehla hissa hai, 🎉♥️♾️aur tumhari muskaan meri zindagi ki sabse badi jeet hai. 🌹🫂♥️
+
+Kabhi kabhi main sochta hoon ke agar tum meri life mein na aati to shayad meri zindagi aj khali hi rehti.♾️💋🫂🎉 Tumne meri duniya ko rangon se bhar diya hai.♥️💕💞 Tum meri khushiyon ki wajah ho aur meri rooh ka sukoon. 💗💝🎂Tum meri taaqat bhi ho aur meri sabse badi kamzori bhi kiun ke main tumhare bina apne aap ko soch hi nahi sakta. 🫀💕💗
+
+Janah Mujhe yaad hai woh waqt jab tumse pehli dafa baat hui thi💞💝🎂. Us waqt mujhe nahi laga tha ke tum meri zindagi ka itna gehra hissa ban jaogi.💕🌺 Lekin aaj main yeh keh sakta hoon ke tum meri life ki sabse badi blessing ho💗🌺. Tum mere liye sirf ek dost, 💞🎂ek saathi, 💗💞ya ek pyaar nahi ho  tum meri rooh ka woh hissa ho jo mujhe mukammal banata hai. 💞💗
+
+Main chahta hoon ke tumhe hamesha yeh ehsaas ho ke tum kabhi akeli nahi ho.💞🌺 Chahe duniya tumhare khilaaf ho, main tumhare saath rahunga.🥳🎀💓 Tum meri duaon ka sabse pyara hissa ho aur mera wada hai ke tumhari khushi ke liye main hamesha apni jaan laga💞💓💗. Main tumhe woh izzat, pyaar aur care dena chahta hoon jo shayad tumne kabhi socha bhi na ho. ♾️💞🎀💗🌺
+
+JANAH,🌺🎀💞 main tumhari zindagi ka har lamha tumhare saath jeena chahta hoon. 💗🎀💞Har subah tumhari muskaan se shuru ho,💓💗 har raat tumhari baaton par khatam ho. 🌺💞🥳Tum meri aankhon ka sukoon ho aur meri duaon ka jawab. 🌺🎀Main sirf Allah se yeh maangta hoon ke woh tumhari zindagi ko tumhari khubsurti ki tarah chamka de aur tumhara naseeb tumhare dil ki tarah masoom aur pyara bana de. 🤍💓💞💗
+
+Tumhari har choti baat,🌺🎀 tumhari har aadat,🌺🎀💗 tumhari har smile meri zindagi ka sabse pyaara hissa hai. 🎀💗💓Main tumhe har roop mein, har andaaz mein, aur har surat mein chahta hoon.💓🌺💞 Tum meri dunya ho, meri dua ho, aur meri zindagi ki sabse khoobsurat kahani ho. ✨🌺🎀
+
+Aaj ke din main tumse ek wada karta hoon  main tumhe kabhi akela feel nahi hone dunga.💗💞 Main tumhari khushiyon ki hifazat karunga, tumhari khwahishon ko apna mission banaunga,💗💞💓 aur tumhari har khushi ko apni jeet samjhunga. 💓🎀💓Tum meri rooh ho, meri dua ho,💗🎀 aur meri mohabbat ho. 🌹🌺💞
+
+Aj agar hum sath hoty nah janah🎀💞 toh ma apne hathon se apni jaan ko cake khilata...🎉💞 Zor se galey lagata♥️💞 meethiyan deta🎉💞 insha'Allah 1 din yeh waqt bhi ayega🎀💞 jab ma hamara pura room decorate kerunga apni janah ka liye🎉💞 red flowers 🌺 🌹 red balloons 💞🌺 candle lights 🎉🌺 Ahaaa🌹🌺 full Romantic mahoool💞🌺  Jaan saari zindagi tumhe princess treatment dunga🎉🌺 bs allah humey hamesha ka liye mehram banade🌹🌺 or yeh 2 saal jald az jald guzare🎀🌺 Ameeen🎉🌺 ab or mere pass Ilfaaz nai hain🌹🌺 ma shyd ilfaazo se utna kabhi bata hi nai sakta ke kitna payaar hai mere dill mai ♥️🌺 insha'Allah Tunhara gugu 1 din zaroor lene ayega tumhe 💗💞💓 ab bas payari payari meethiyon ke sath is boring baton ko khatam kerta hu🌺💓🥳 Ummmahhhhhhhhh on right cheeks💋💋 Ummmahhhhhhhhh on left cheeks💋💋💋 Ummmahhhhhhhhh or forehead 💋💋💋 Ummmahhhhhhhhh on right eyes 💋💋💋💋 Ummmahhhhhhhhh on left eyes 💋💋💋💋 Ummmahhhhhhhhh dhylll shallliii or neck💋💋💋💋 Ummmahhhhhhhhh on right hands dhylll shallliiii💋💋💋 Ummmahhhhhhhhh on left hand💋💋💋💋 Ummmahhhhhhhhh on right foot💋💋💋💋 Ummmahhhhhhhhh on left fooot💋💋💋💋 
+
+Once again, Happy 19th Birthday meri jaan 🥳🎂💞 Main Allah ka shukriya ada karta hoon ke usne mujhe tum jaisi khoobsurat rooh di.❤️💞💓 Tum meri duniya ho, 🌺💞meri dua ho, aur meri mohabbat ka asal matlab ho. I love you infinity, meri Janah, mera shonnnaaaaaaa ❤️🌺 mera Guddaaaaaaa 💓❤️ mera meethaaaayyy 💞💓 meri princess 🌺💓💋 My beghum♾️🫀❤️
+
+HAPPY BIRTHDAY TO YOU JANAH 🥳
+I LOVE YOU MERI JAAAN💋🥳`;
+
+    // set message text
+    document.getElementById('loveMessage').innerText = loveMessage;
+
+    // unlock logic (case-insensitive)
+    const unlockBtn = document.getElementById('unlockBtn');
+    const answerInput = document.getElementById('answer');
+    const err = document.getElementById('err');
+
+    unlockBtn.addEventListener('click', tryUnlock);
+    answerInput.addEventListener('keydown', e=>{ if(e.key === 'Enter') tryUnlock(); });
+
+    function tryUnlock(){
+      const val = document.getElementById('answer').value.trim().toLowerCase();
+      if(!val){ showErr('Please type an answer.'); return; }
+      if(val === SECURITY_ANSWER.toLowerCase()){
+        document.getElementById('gate').classList.add('hidden');
+        document.getElementById('mainContent').classList.remove('hidden');
+        // animate small hearts
+        startHearts();
+        err.style.display='none';
+      } else {
+        showErr('Galat jawab hai — dobara koshish karo!');
+      }
+    }
+
+    function showErr(text){
+      err.innerText = text;
+      err.style.display = 'block';
+      setTimeout(()=>{ err.style.display = 'none'; }, 2200);
+    }
+
+    function startHearts(){
+      const hearts = document.querySelectorAll('.heart');
+      hearts.forEach((h,i)=>{
+        h.animate([
+          {transform:`translateY(0) scale(1)`},
+          {transform:`translateY(-24px) scale(0.95)`},
+          {transform:`translateY(0) scale(1)`}
+        ],{duration:1800 + i*300,iterations:Infinity,easing:'ease-in-out'});
+      });
+    }
+  </script>
+</body>
+</html>
